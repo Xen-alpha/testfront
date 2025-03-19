@@ -1,5 +1,14 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
+import { onMounted, ref } from 'vue';
+import axios from 'axios';
+
+let text = ref("");
+
+onMounted(async () => {
+  text.value = await axios.get("/api/test").data;
+});
+
 </script>
 
 <template>
@@ -13,6 +22,7 @@ import HelloWorld from './components/HelloWorld.vue'
   </div>
   <HelloWorld msg="Vite + Vue" />
   <div>HGY2</div>
+  <div>{{ text }}</div>
 </template>
 
 <style scoped>
